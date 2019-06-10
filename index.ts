@@ -83,3 +83,68 @@ let ups: number = null
 ups = undefined
 
 // Always set `strictNullChecks` (or `strict`) to avoid these problems !!!
+
+// `never`:
+// > type represents the type of values that never occur
+//
+// Examples: a function that never returns
+function error(message: string): never {
+    throw new Error(message);
+}
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+
+// > The `never` type is a subtype of, and assignable to, every type;
+// > however, no type is a subtype of, or assignable to, `never` (except `never` itself).
+// > Even `any` isn’t assignable to `never`.
+//
+// That'll become really usefull later, we'll see how to use it to infer other types.
+
+// `object` - uset to represent non-primitive types (`number`, `string`, `boolean`, `symbol`, `null`, or `undefined`).
+
+let obj: object = {}
+obj = { foo: 'bar' }
+obj = 1 // Error !
+
+// Type assertions
+//
+// > Sometimes you’ll end up in a situation where you’ll know more about a value than TypeScript does.
+//
+// In such situations you can use assertions to inform TS about the types, but use them carefully.
+const someValue: any = 4
+const aNumber = someValue as number
+
+// That seems useful but can be dangerous
+const someOtherValue: any = 4
+const notAString: string = someOtherValue as string // Ups! TS trusts us and we can screw it
+
+// Type inference
+//
+// We don't always need to tell TS what's the type of a value, it can infer it for us.
+//
+// It can infer type literals:
+let num1 = 1
+let str1 = 'foo'
+
+num1 + str1 // Error! Can't add a number to a string
+
+// And return types
+function concat(a: string, b: string) {
+  return a + b
+}
+
+concat('foo', 'bar') + 'baz' // works! `concat` returns `string`
+
+// TS works with structural types, meaning it checks by `shape` (this is important)
+
+function getFoo(obj: { foo: string }) {
+  return obj.foo
+}
+
+const obj1 = { foo: 'bar' } // inferred as `{ foo: string }`
+
+getFoo(obj1) // works!
+
+// more on type inference later 👌
