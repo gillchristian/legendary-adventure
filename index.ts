@@ -89,40 +89,45 @@ ups = undefined
 //
 // Examples: a function that never returns
 function error(message: string): never {
-    throw new Error(message);
+  throw new Error(message)
 }
 function infiniteLoop(): never {
-    while (true) {
-    }
+  while (true) {}
 }
 
 // > The `never` type is a subtype of, and assignable to, every type;
-// > however, no type is a subtype of, or assignable to, `never` (except `never` itself).
-// > Even `any` isn’t assignable to `never`.
+// > however, no type is a subtype of, or assignable to,
+// > `never` (except `never` itself). Even `any` isn’t assignable to `never`.
 //
-// That'll become really usefull later, we'll see how to use it to infer other types.
+// That'll become really usefull later,
+// we'll see how to use it to infer other types.
 
-// `object` - uset to represent non-primitive types (`number`, `string`, `boolean`, `symbol`, `null`, or `undefined`).
+// `object` - uset to represent non-primitive types
+//            (`number`, `string`, `boolean`, `symbol`, `null`, or `undefined`).
 
 let obj: object = {}
-obj = { foo: 'bar' }
+obj = {foo: 'bar'}
 obj = 1 // Error !
 
 // Type assertions
 //
-// > Sometimes you’ll end up in a situation where you’ll know more about a value than TypeScript does.
+// > Sometimes you’ll end up in a situation where you’ll
+// > know more about a value than TypeScript does.
 //
-// In such situations you can use assertions to inform TS about the types, but use them carefully.
+// In such situations you can use assertions to inform TS about the types,
+// but use them carefully.
 const someValue: any = 4
 const aNumber = someValue as number
 
 // That seems useful but can be dangerous
 const someOtherValue: any = 4
-const notAString: string = someOtherValue as string // Ups! TS trusts us and we can screw it
+// Ups! TS trusts us and we can screw it
+const notAString: string = someOtherValue as string
 
 // Type inference
 //
-// We don't always need to tell TS what's the type of a value, it can infer it for us.
+// We don't always need to tell TS what's the type of a value,
+// it can infer it for us.
 //
 // It can infer type literals:
 let num1 = 1
@@ -139,11 +144,11 @@ concat('foo', 'bar') + 'baz' // works! `concat` returns `string`
 
 // TS works with structural types, meaning it checks by `shape` (this is important)
 
-function getFoo(obj: { foo: string }) {
+function getFoo(obj: {foo: string}) {
   return obj.foo
 }
 
-const obj1 = { foo: 'bar' } // inferred as `{ foo: string }`
+const obj1 = {foo: 'bar'} // inferred as `{ foo: string }`
 
 getFoo(obj1) // works!
 
