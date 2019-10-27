@@ -4,7 +4,8 @@ A TS tutorial with no guarantees
 
 ### Instructions
 
-Follow along `index.ts` in VS Code (or any other editor with TypeScript support).
+Follow along the `.ts` files in VS Code (or any other editor with TypeScript
+support).
 
 To check compiler output in the terminal run:
 
