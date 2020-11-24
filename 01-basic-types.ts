@@ -18,7 +18,7 @@ const arr2: Array<number> = [1, 2, 3] // use only when `x[]` doesn't work
 const tuple1: [number, number] = [1, 2]
 const tuple2: [number, string, boolean] = [1, 'foo', false]
 
-const tupleErr: [number, number] = [1, 2, 3] // Error!
+const tupleErr: [number, number, number] = [1, 2, 3] // Error!
 // This ^ gives the following error:
 //
 // Type '[number, number, number]' is not assignable to type '[number, number]'.
@@ -79,8 +79,9 @@ const undefinedValue: undefined = undefined
 // > are only assignable to `void` and their respective types.
 //
 // Without `strictNullChecks` the following is valid (try changing `tsconfig.json`)
-let ups: number = null
-ups = undefined
+let oops: string = null
+
+oops.toLowerCase()
 
 // Always set `strictNullChecks` (or `strict`) to avoid these problems !!!
 
